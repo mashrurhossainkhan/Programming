@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+    int n,i,y=0;
+    cin >> n;
+    
+    for(i=1; i<=10;i++){
+        y=n*i;
+        cout<<n<<" x "<<i<<" = "<<y<<endl;
+    }
+    return 0;
+}

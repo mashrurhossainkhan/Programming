@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void ans(int x){
+	int y[10000]={0},i=0,j,count[1100]={0},k=0,max=0;
+	while(x!=0){
+		y[i]=x%2;
+		x=x/2;
+		i++;
+	}
+	for(j=i-1; j>=0; j--){
+		
+		if(y[j]==1)
+			count[k]++;
+			else k++;
+	}
+	for(i=0; i<=k; i++){
+		if(i==0)max=count[i];
+		if(max<count[i])
+			max=count[i];
+	}
+	printf("%d\n",max);
+}
+int main(){
+	int dec;
+	scanf("%d", &dec);
+	ans(dec);
+	return 0;
+	}
