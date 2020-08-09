@@ -1,0 +1,92 @@
+package lab3_012;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+
+public class Bfs_Demo {
+    int MAX = 99999;
+    
+    int matrix[][] = {{0, 75, MAX, 113, 140, MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX},
+                      {75, 0, 71, MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX},
+                      {MAX, 71, 0, MAX, 151, MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX},
+                      {113, MAX, MAX, 0, MAX, 111, MAX, MAX, MAX, MAX, MAX, MAX, MAX},
+                      {140, MAX, 151, MAX, 0, MAX, MAX, MAX, MAX, 80, 99, MAX, MAX},
+                      {MAX, MAX, MAX, 111, MAX, 0, 70, MAX, MAX, MAX, MAX, MAX, MAX},
+                      {MAX, MAX, MAX, MAX, MAX, 70, 0, 75, MAX, MAX, MAX, MAX, MAX},
+                      {MAX, MAX, MAX, MAX, MAX, MAX, 75, 0, 120, MAX, MAX, MAX, MAX},
+                      {MAX, MAX, MAX, MAX, MAX, MAX, MAX, 120, 0, 146, MAX, MAX, MAX},
+                      {MAX, MAX, MAX, MAX, 80, MAX, MAX, MAX, 146, 0, MAX, 97, MAX},
+                      {MAX, MAX, MAX, MAX, 99, MAX, MAX, MAX, MAX, MAX, 0, MAX, 211},
+                      {MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, 138, 97, MAX, 0, 101},
+                      {MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, 211, 101, 0}
+    
+    };
+    
+    int start_state = 0;
+    int goal_state = 12;
+    int total_state = 13;
+    
+    
+    void BFS(){
+        Node root = new Node(0, null, 0, 0);
+        
+        if(root.state == goal_state){
+            System.out.println("Goal is found");
+            return;
+        }
+        
+        LinkedList <Node> frontier = new LinkedList<Node>();
+        frontier.add(root);
+        HashSet<Integer> explored = new HashSet<>();
+        
+        while(true){
+            if(frontier.isEmpty()){
+                System.out.println("Failed");
+                return;
+            }
+            Node node = frontier.poll();
+            explored.add(node.state);
+            for(int i = 0; i < total_state; i++){
+                if(matrix[node.state][i] != 0 && matrix[node.state][i] < MAX){
+                    int cost = node.gcost + matrix[node.state][i];
+                    int d = node.depth + 1;
+                    Node child = new Node(i, node, cost, d);
+                    
+                    if(!explored.contains(child.state) && !frontier.contains(node)){
+                        if(child.state == goal_state){
+                            System.out.println("Goal is found");
+                            print_path(child);
+                            return;
+                        }
+                        frontier.add(child);
+                        
+                    }
+                }
+            }
+            
+        }
+        
+    }
+    
+    void print_path(Node node){
+        
+        ArrayList<Integer> mylist = new ArrayList<Integer>();
+        mylist.add(node.state);
+        
+        while(node.state != start_state){
+            node = node.parent;
+            mylist.add(node.state);
+        }
+        
+        int s = mylist.size();
+        System.out.print("Path:");
+        for(int i = s - 1; i >= 0; i--){
+            System.out.print(" " +mylist.get(i));
+        }
+        System.out.println("");
+                
+    }
+    
+    
+}
