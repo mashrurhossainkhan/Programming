@@ -1,0 +1,5 @@
+ printf("1. Insert item. 2. search Previous. 3. Search item. \n");
+printf("4. Print height of tree. 5. Print height of an item. \n");
+printf(" 6. PrintInOrder. 7. PrintPreOrder 8. PrintPostOrder\n");
+printf(" 9. Print depth of an item. 10.Print size 11.Get Minimum 12.Get Maximum \n");
+ printf("13.Delete item 14.RangeSearch 15.findLCA  16.findInorderSuccessor 17.Exit\n");
