@@ -1,0 +1,9 @@
+int main()
+{
+int a,b,c;
+a=3; b=2;
+if(x==0)
+else if(x==0)
+y= (a*b)+(f*g)-t;
+cout<<y<<endl;
+}
