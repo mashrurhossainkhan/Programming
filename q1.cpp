@@ -16,6 +16,7 @@ int main(){
   int data;
   getline(cin, buffer);
   istringstream iss(buffer);
+  //cout<<"iss: "<<iss<<endl;
   while (iss>>data)
   {
       v.push_back(data);
